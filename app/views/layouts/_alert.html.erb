@@ -1,4 +1,6 @@
-<div>
+
+<% if notice %>
     <p class="notice"><%= notice %></p>
+<% else %>
     <p class="alert"><%= alert %></p>
-</div>
+<% end %>

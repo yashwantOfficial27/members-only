@@ -1,7 +1,7 @@
 <div class='post'>
     <h4><%= post.title %></h4>
     <% if current_user %>
-        <small><b>Posted by: </b><%= post.user.email %></small>
+        <small><b>Posted by: </b><%= link_to post.user.username, user_path(post.user) %></small>
     <% end %>
     <p><%= post.content %></p> 
 </div>

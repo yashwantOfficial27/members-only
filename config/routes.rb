@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/profile'
   # get 'posts/index'
   # get 'posts/new'
   # get 'posts/create'
@@ -9,7 +10,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "posts#index"
-  devise_for :users
+
+  get "/u/:id", to: "users#profile", as: "user"
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
   # #     
-  resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    resources :comments
+  end
 end
